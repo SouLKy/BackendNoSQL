@@ -18,7 +18,7 @@ exports.createProduct = async (req, res) => {
  */
 exports.getData = (req, res) => {
     ProductModel.find({}, (err, docs) => {
-        res.send({ docs });
+        res.send(docs);
     })
 }
 
@@ -28,6 +28,6 @@ exports.getData = (req, res) => {
 exports.insertData = (req, res) => {
     const data = req.body
     ProductModel.create(data,(err, docs) => {
-        res.send({ data:docs })
+        res.send( docs )
     })
 }

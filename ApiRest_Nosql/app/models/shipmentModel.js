@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-
+const mongoose = require('mongoose');
+const productModel = require('./productModel');
 
 const ShipmentSchema = new mongoose.Schema({
     id_shipment: {

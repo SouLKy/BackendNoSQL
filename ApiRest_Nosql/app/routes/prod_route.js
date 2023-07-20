@@ -7,11 +7,18 @@ const router = express.Router()
 const path = 'productos'
 
 /**
- * Ruta: /user GET
+ * Ruta: /productos GET
  */
 router.get(
     `/${path}`,
     controller.getData
 )
 
+/**
+ * Ruta: /productos Post
+ */
+router.post(
+    `/${path}`,
+    controller.insertData
+)
 module.exports = router

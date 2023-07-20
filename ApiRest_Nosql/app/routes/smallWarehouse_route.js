@@ -1,10 +1,10 @@
 const express = require('express')
 
-const controller = require('../controller/shipmentController')
+const controller = require('../controller/smallWarehouseController')
 
 const router = express.Router()
 
-const path = 'Shipment'
+const path = 'smallWarehouse'
 
 /**
  * Ruta: /Shipment GET
