@@ -22,4 +22,12 @@ router.post(
     controller.insertData
 )
 
+/**
+ * Ruta: /mov Post
+ */
+router.post(
+    `/${path}/create`,
+    controller.createShipment
+)
+
 module.exports = router

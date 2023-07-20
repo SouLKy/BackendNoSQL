@@ -1,18 +1,19 @@
 const model= require('../models/shipmentModel')
 const ProductModel = require('../models/productModel'); // Importa también el modelo de Product
 
+
 exports.createShipment = async (req, res) => {
     try {
         const { id_shipment, id_warehouse, name_warehouse, request, departure, arrival, product, quantity } = req.body;
 
         // Antes de crear el envío, asegúrate de que el producto exista en la base de datos
-        const existingProduct = await ProductModel.findOne({ _id: product });
+        const existingProduct = await ProductModel.findOne({ id: product });
 
         if (!existingProduct) {
             return res.status(400).json({ message: 'El producto especificado no existe.' });
         }
 
-        const newShipment = new ShipmentModel({ id_shipment, id_warehouse, name_warehouse, request, departure, arrival, product, quantity });
+        const newShipment = new model({ id_shipment, id_warehouse, name_warehouse, request, departure, arrival, product, quantity });
         const createdShipment = await newShipment.save();
 
         res.status(201).json(createdShipment);
@@ -26,7 +27,7 @@ exports.createShipment = async (req, res) => {
  */
 exports.getData = (req, res) => {
     model.find({}, (err, docs) => {
-        res.send({ docs });
+        res.send( docs );
     })
 }
 

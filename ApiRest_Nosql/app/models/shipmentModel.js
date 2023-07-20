@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-
+const mongoose = require('mongoose');
+const productModel = require('./productModel');
 
 const ShipmentSchema = new mongoose.Schema({
     id_shipment: {
@@ -25,7 +25,7 @@ const ShipmentSchema = new mongoose.Schema({
         type: Date,
     },
     product: {
-        type: mongoose.Schema.Types.ObjectId, // Utilizamos el tipo ObjectId para hacer referencia al modelo Product
+        type: productModel, // Utilizamos el tipo ObjectId para hacer referencia al modelo Product
         ref: 'Product', // El nombre del modelo que estamos haciendo referencia (debe coincidir con el nombre de exportación en productModel.js)
         required: true,
     },

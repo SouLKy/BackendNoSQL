@@ -14,4 +14,11 @@ router.get(
     controller.getData
 )
 
+/**
+ * Ruta: /mov Post
+ */
+router.post(
+    `/${path}`,
+    controller.insertData
+)
 module.exports = router

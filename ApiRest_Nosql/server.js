@@ -1,6 +1,7 @@
 const express = require('express')
 const init_db = require('./config/db')
 const bodyParser = require('body-parser')
+const cors = require('cors');
 const app = express()
 const port = 3001
 
@@ -19,6 +20,9 @@ app.use(
         extended: true
     })
 )
+
+
+app.use(cors(port));
 
 app.use('/shp',Shipmentroute)
 app.use('/prod',prodRouter)
