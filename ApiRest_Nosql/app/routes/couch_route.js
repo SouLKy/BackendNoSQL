@@ -8,14 +8,14 @@ let bucketMovimientos;
 let collectionMovimientos;
 let bucketAgotamiento;
 let collectionAgotamiento;
-
+let idMov;
 async function initializeCouchbase() {
   try {
     const cluster = await connect("couchbases://cb.qmvtz39bbnhpghbe.cloud.couchbase.com", {
       username: "tym",
       password: "xRopture9900!"
     });
-
+    idMov = 0;
     bucketMovimientos = cluster.bucket("Movimientos");
     bucketAgotamiento = cluster.bucket("Agotamiento")
     collectionMovimientos = bucketMovimientos.defaultCollection();
@@ -64,10 +64,15 @@ router.get('/getMovimiento', async (req, res) => {
 });
 
 router.post('/movimiento', async (req, res) =>{
-  const id = req.body.id;
-  const value = { id_warehouse: req.body.id_warehouse,time: req.body.time };
+  const id_warehouse = req.body.id_warehouse;
+  const departure = new Date(req.body.departure);
+  const arrival = new Date(req.body.arrival);
+  var diff = (arrival.getTime() - departure.getTime());
+  var days = diff*86400000;
+  const value = { id_warehouse: id_warehouse,time: days };
   try {
-      await collectionMovimientos.upsert(id, value);
+      await collectionMovimientos.upsert(idMov, value);
+      idMov++;
       res.json({Mensaje:"Datos insertados correctamente"});
   } catch(error) {
       console.log("Error al insertar",error);
