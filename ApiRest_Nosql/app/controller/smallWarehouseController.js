@@ -1,8 +1,11 @@
 const SmallWarehouseModel = require('../models/smallWarehouseModel');
 
-exports.createSmallWarehouse = async (req, res) => {
+exports.insertData = async (req, res) => {
     try {
-        const { id, name, stock } = req.body;
+        const stock = [];
+        const id = req.body.id;
+        const name = req.body.name;
+        stock = req.body.stock
 
         const newSmallWarehouse = new SmallWarehouseModel({ id, name, stock });
         const createdSmallWarehouse = await newSmallWarehouse.save();
@@ -18,16 +21,16 @@ exports.createSmallWarehouse = async (req, res) => {
  */
 exports.getData = (req, res) => {
     SmallWarehouseModel.find({}, (err, docs) => {
-        res.send({ docs });
+        res.send( docs );
     })
 }
 
 /**
  * INSERT 
- */
+ 
 exports.insertData = (req, res) => {
     const data = req.body
     SmallWarehouseModel.create(data,(err, docs) => {
-        res.send({ data:docs })
+        res.send( docs)
     })
-}
+}*/

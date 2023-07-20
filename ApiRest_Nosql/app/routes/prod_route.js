@@ -7,7 +7,7 @@ const router = express.Router()
 const path = 'productos'
 
 /**
- * Ruta: /user GET
+ * Ruta: /productos GET
  */
 router.get(
     `/${path}`,
@@ -15,7 +15,7 @@ router.get(
 )
 
 /**
- * Ruta: /mov Post
+ * Ruta: /productos Post
  */
 router.post(
     `/${path}`,
