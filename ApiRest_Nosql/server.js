@@ -20,9 +20,9 @@ app.use(
     })
 )
 
-app.use(movRouter)
-app.use(prodRouter)
-app.use(couchRouter)
+app.use('/mov',movRouter)
+app.use('/prod',prodRouter)
+app.use('/couch',couchRouter)
 
 
 app.listen(port,() =>{
