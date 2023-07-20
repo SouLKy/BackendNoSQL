@@ -6,6 +6,7 @@ const port = 3001
 
 const movRouter = require('./app/routes/mov_route')
 const prodRouter = require('./app/routes/prod_route')
+const couchRouter = require('./app/routes/couch_route')
 
 app.use(
     bodyParser.json({
@@ -21,6 +22,7 @@ app.use(
 
 app.use(movRouter)
 app.use(prodRouter)
+app.use(couchRouter)
 
 
 app.listen(port,() =>{

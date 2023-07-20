@@ -4,7 +4,8 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 
 router.use(bodyParser.urlencoded({ extended: true }));
-
+let collection;
+let bucket;
 async function initializeCouchbase() {
   try {
     const cluster = await connect("couchbases://cb.qmvtz39bbnhpghbe.cloud.couchbase.com", {
@@ -12,8 +13,8 @@ async function initializeCouchbase() {
       password: "xRopture9900!"
     });
 
-    const bucket = cluster.bucket("Warehouse");
-    const collection = bucket.defaultCollection();
+    bucket = cluster.bucket("Warehouse");
+    collection = bucket.defaultCollection();
     console.log("CONECTADO");
     
   } catch (error) {
@@ -31,7 +32,19 @@ initializeCouchbase()
   });
 
 router.get('/', async (req, res) => { 
-res.json({hola: "ASDASDASD"});
-});  
+  const result = await collection.get("13");
+  res.json(result.content);
+});
+
+router.post('/addMov', async (req, res) =>{
+  const id = req.body.id;
+  const value = { time: req.body.time, stock: req.body.stock };
+  try {
+      await collection.upsert(id, value);
+      res.json(await collection.get(id));
+  } catch(error) {
+      console.log("Error al insertar",error);
+  }
+});
 // Exporta el enrutador para su uso en tu aplicación de Express
 module.exports = router;
