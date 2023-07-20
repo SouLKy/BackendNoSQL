@@ -15,24 +15,7 @@ async function initializeCouchbase() {
     const bucket = cluster.bucket("Warehouse");
     const collection = bucket.defaultCollection();
     console.log("CONECTADO");
-
-    const getDoc = async (key) => {
-      const result = await collection.get(key);
-      return result.content;
-    };
-
-    const insertDoc = async () => {
-      const key = "1"; // id
-      const value = { time: 12345, stock: 2 };
-      try {
-        await collection.upsert(key, value);
-        console.log("Documento insertado", await getDoc(key));
-      } catch (error) {
-        console.log("Error al insertar", error);
-      }
-    };
-
-    await insertDoc();
+    
   } catch (error) {
     console.error('Error al conectar con Couchbase:', error);
     // Realiza cualquier otra acción necesaria para manejar el error.
