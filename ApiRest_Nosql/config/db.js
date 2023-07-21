@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 mongoose.set('strictQuery', false);
 
-const db_uri = `mongodb+srv://josemarchioni:copitin12@cluster-01.rhszwkm.mongodb.net/?retryWrites=true&w=majority`
+const db_uri = `mongodb+srv://josemarchioni:<password>@cluster-01.rhszwkm.mongodb.net/?retryWrites=true&w=majority`
 
 module.exports = () => {
 

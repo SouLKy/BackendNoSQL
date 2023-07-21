@@ -13,7 +13,7 @@ async function initializeCouchbase() {
   try {
     const cluster = await connect("couchbases://cb.qmvtz39bbnhpghbe.cloud.couchbase.com", {
       username: "tym",
-      password: "xRopture9900!"
+      password: "<password>"
     });
     idMov = 0;
     bucketMovimientos = cluster.bucket("Movimientos");
